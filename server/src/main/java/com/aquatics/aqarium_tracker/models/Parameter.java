@@ -3,26 +3,24 @@ package com.aquatics.aqarium_tracker.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "parameters")
 public class Parameter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @ManyToOne
-    FishTank fishTank;
 
     @Column
-    String parameterName;
+    private String parameterName;
 
     @Column
-    Double measurement;
+    private Double measurement;
 
     @Column
-    String unit;
+    private String unit;
 
 
-    public Parameter(FishTank fishTank, String parameterName, Double measurement, String unit) {
-        this.fishTank = fishTank;
+    public Parameter( String parameterName, Double measurement, String unit) {
         this.parameterName = parameterName;
         this.measurement = measurement;
         this.unit = unit;
@@ -39,13 +37,7 @@ public class Parameter {
         this.id = id;
     }
 
-    public FishTank getFishTank() {
-        return fishTank;
-    }
 
-    public void setFishTank(FishTank fishTank) {
-        this.fishTank = fishTank;
-    }
 
     public String getParameterName() {
         return parameterName;

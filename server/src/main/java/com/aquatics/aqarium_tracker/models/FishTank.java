@@ -1,9 +1,11 @@
 package com.aquatics.aqarium_tracker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
+@Table(name ="fishTanks")
 public class FishTank {
 
     @Id
@@ -12,16 +14,15 @@ public class FishTank {
 
     @Column
     String name;
+
     @ManyToOne
+    @JoinColumn(name = "fishTanks")
+    @JsonIgnoreProperties({"fishTanks"})
     User user;
 
-    @OneToMany(mappedBy = "fishTank")
-    List<Parameter> paramerters;
-
-    public FishTank(String name, User user, List<Parameter> paramerters) {
+    public FishTank(String name, User user) {
         this.name = name;
         this.user = user;
-        this.paramerters = paramerters;
     }
 
     public FishTank() {
@@ -49,13 +50,5 @@ public class FishTank {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Parameter> getParamerters() {
-        return paramerters;
-    }
-
-    public void setParamerters(List<Parameter> paramerters) {
-        this.paramerters = paramerters;
     }
 }

@@ -2,7 +2,7 @@ package com.aquatics.aqarium_tracker.components;
 
 import com.aquatics.aqarium_tracker.models.FishTank;
 import com.aquatics.aqarium_tracker.models.User;
-import com.aquatics.aqarium_tracker.repositories.FishTankRepoitory;
+import com.aquatics.aqarium_tracker.repositories.FishTankRepository;
 import com.aquatics.aqarium_tracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -18,7 +18,7 @@ public class dataloader implements ApplicationRunner {
     UserRepository userRepository;
 
     @Autowired
-    FishTankRepoitory fishTankRepoitory;
+    FishTankRepository fishTankRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -33,7 +33,7 @@ public class dataloader implements ApplicationRunner {
         FishTank fishTank1 = new FishTank("AquaOne 90", user1);
         FishTank fishTank2 = new FishTank("Fluval 240", user2);
         FishTank fishTank3 = new FishTank("Fluval Evo 15", user1);
-        fishTankRepoitory.saveAll(Arrays.asList(fishTank1, fishTank2, fishTank3));
+        fishTankRepository.saveAll(Arrays.asList(fishTank1, fishTank2, fishTank3));
 
 
 

@@ -2,11 +2,11 @@ package com.aquatics.aqarium_tracker.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -23,28 +23,57 @@ public class User {
     private String name;
 
     @Column
+    private String username;
+
+    @Column
+    private Boolean active;
+
+    @Column
     private String password;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user"})
-     private List<FishTank> fishTanks;
+    private List<FishTank> fishTanks;
+
+    @Column
+    private String roles;
+    public User() {
+    }
 
 
-
-    public User(String email, String name, String password) {
+    public User(String username) {
         this.email = email;
         this.name = name;
         this.password = password;
         this.fishTanks = new ArrayList<>();
+        this.username = username;
 
     }
 
-    public List<FishTank> getFishTanks() {
-        return fishTanks;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setFishTanks(List<FishTank> fishTanks) {
-        this.fishTanks = fishTanks;
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -63,6 +92,14 @@ public class User {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -71,14 +108,11 @@ public class User {
         this.password = password;
     }
 
-    public User() {
+    public List<FishTank> getFishTanks() {
+        return fishTanks;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setFishTanks(List<FishTank> fishTanks) {
+        this.fishTanks = fishTanks;
     }
 }

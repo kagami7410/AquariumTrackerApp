@@ -1,9 +1,8 @@
 package com.aquatics.aqarium_tracker.models;
 
 
+import com.aquatics.aqarium_tracker.models.FishTank;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import java.util.*;
@@ -23,7 +22,7 @@ public class User {
     private String name;
 
     @Column
-    private String username;
+    private String userName;
 
     @Column
     private Boolean active;
@@ -41,12 +40,12 @@ public class User {
     }
 
 
-    public User(String username) {
+    public User(String userName) {
         this.email = email;
         this.name = name;
         this.password = password;
         this.fishTanks = new ArrayList<>();
-        this.username = username;
+        this.userName = userName;
 
     }
 
@@ -92,12 +91,12 @@ public class User {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = userName;
     }
 
     public String getPassword() {

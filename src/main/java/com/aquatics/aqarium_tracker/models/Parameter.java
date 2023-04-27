@@ -1,10 +1,10 @@
 package com.aquatics.aqarium_tracker.models;
 
+import com.aquatics.aqarium_tracker.models.FishTank;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "parameters")

@@ -5,18 +5,17 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
-import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
-    private String username;
+    private String userName;
     private String password;
     private boolean active;
     private List<GrantedAuthority> authorities;
 
     public MyUserDetails(User user) {
-        this.username = user.getUsername();
+        this.userName = user.getUserName();
         this.password = user.getPassword();
         this.active = user.getActive();
         this.authorities = Arrays.stream(user.getRoles().split(","))
@@ -27,7 +26,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     @Override
@@ -50,8 +49,8 @@ public class MyUserDetails implements UserDetails {
         return active;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class Parameter {
     private Date measurement_date;
 
     @ManyToOne
-    @JoinColumn(name = "parameters")
+    @JoinColumn(name = "fishTanks_id")
     @JsonIgnoreProperties({"parameters"})
     FishTank fishTank;
 

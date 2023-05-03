@@ -17,7 +17,7 @@ public class FishTank {
     String name;
 
     @ManyToOne
-    @JoinColumn(name  = "fishTanks")
+    @JoinColumn(name  = "user_id")
     @JsonIgnoreProperties({"fishTanks"})
     User user;
 
@@ -31,6 +31,30 @@ public class FishTank {
 
     public void setParameters(List<Parameter> parameters) {
         this.parameters = parameters;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public FishTank(String name, User myuser) {

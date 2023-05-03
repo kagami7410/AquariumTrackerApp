@@ -13,6 +13,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -36,14 +41,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/**")
+        http.cors().and().csrf().disable();
+//        http.authorizeRequests()
+//                .antMatchers("/**")
 //                .hasAnyRole("ADMIN")
 //                .antMatchers("/users/getAll")
-                .hasRole("ADMIN")
-                .antMatchers("/").permitAll()
-                .and().formLogin();
+//                .hasRole("ADMIN")
+//                .antMatchers("/").permitAll()
+//                .and().formLogin();
     }
+
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Arrays.asList("*"));
+//        configuration.setAllowedMethods(Arrays.asList("*"));
+//        configuration.setAllowedHeaders(Arrays.asList("*"));
+//        configuration.setAllowCredentials(true);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
 
     @Bean
     public static NoOpPasswordEncoder passwordEncoder() {

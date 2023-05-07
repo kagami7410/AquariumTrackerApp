@@ -1,7 +1,7 @@
 package com.aquatics.aqarium_tracker.repositories;
 
-import com.aquatics.aqarium_tracker.models.Parameter;
+import com.aquatics.aqarium_tracker.models.ParametersList;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ParameterRepository extends JpaRepository<Parameter, Long> {
+public interface ParameterRepository extends JpaRepository<ParametersList, Long> {
 }

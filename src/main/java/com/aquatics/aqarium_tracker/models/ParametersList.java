@@ -17,22 +17,22 @@ public class ParametersList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Date measurement_date;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "fishTanks_id ")
     @JsonIgnoreProperties({"parameters"})
     FishTank fishTank;
 
-    @OneToMany(mappedBy = "parameter")
-    @JsonIgnoreProperties("parameter")
+    @Column
+    private String title;
+
+    @OneToMany(mappedBy = "parameterList")
+    @JsonIgnoreProperties("parameterList")
     List<SingleParameter> singleParameters;
 
-    public ParametersList(Date measurement_date, FishTank fishTank) {
-
-        this.measurement_date = measurement_date;
+    public ParametersList(String title, FishTank fishTank) {
         this.fishTank = fishTank;
+        this.title = title;
         this.singleParameters = new ArrayList<>();
     }
 

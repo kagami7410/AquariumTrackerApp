@@ -40,7 +40,7 @@ public class User {
     }
 
 
-    public User(String userName) {
+    public User(String userName, String name, String password, String email) {
         this.email = email;
         this.name = name;
         this.password = password;

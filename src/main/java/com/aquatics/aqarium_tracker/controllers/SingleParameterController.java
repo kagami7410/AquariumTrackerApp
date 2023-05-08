@@ -1,13 +1,16 @@
 package com.aquatics.aqarium_tracker.controllers;
 
+import java.util.*;
+
+import com.aquatics.aqarium_tracker.models.ParametersList;
 import com.aquatics.aqarium_tracker.models.SingleParameter;
+import com.aquatics.aqarium_tracker.repositories.ParameterRepository;
 import com.aquatics.aqarium_tracker.repositories.SingleParameterRepository;
+import com.aquatics.aqarium_tracker.service.ParameterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SingleParameterController {
@@ -15,10 +18,24 @@ public class SingleParameterController {
     @Autowired
     SingleParameterRepository singleParamerterRepository;
 
+    @Autowired
+    ParameterServiceImpl parameterService;
+
+    @Autowired
+    ParameterRepository parameterRepository;
+
 
     @PostMapping("/singleParameter/add")
-    public ResponseEntity<String> addSingleParameter(@RequestBody SingleParameter singleParameter) {
+    public ResponseEntity<String> addSingleParameter(@RequestBody SingleParameter singleParameter, @RequestParam Long parameterListId) {
+        ParametersList parametersList = parameterRepository.getParameterById(parameterListId).orElse(null);
+        singleParameter.setParameterList(parametersList);
         singleParamerterRepository.save(singleParameter);
         return new ResponseEntity<>("saved parameter: "+ singleParameter.getTitle(), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/singleParameter/get")
+    public ResponseEntity<List<SingleParameter>> getSingleParameter(){
+        List<SingleParameter> allSingleParameters = singleParamerterRepository.findAll();
+        return new ResponseEntity<>(allSingleParameters, HttpStatus.OK);
     }
 }

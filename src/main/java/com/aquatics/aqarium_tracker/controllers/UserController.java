@@ -38,7 +38,7 @@ public class UserController {
         }
         else{
             User user = userRepository.save(newUser);
-            return new ResponseEntity<>("User: "+ user.getName() + "added!", HttpStatus.CREATED);
+            return new ResponseEntity<>("User: "+ user.getName() + " added!", HttpStatus.CREATED);
         }
     }
 

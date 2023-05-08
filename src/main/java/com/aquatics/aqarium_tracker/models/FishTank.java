@@ -29,9 +29,9 @@ public class FishTank {
     private ParametersList parameters;
 
 
-    public FishTank(String name, User myuser) {
+    public FishTank(String name, User user) {
         this.name = name;
-        this.user = myuser;
+        this.user = user;
     }
 
     public FishTank() {

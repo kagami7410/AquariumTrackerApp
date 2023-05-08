@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "singleParameter")
 public class SingleParameter {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long Id;
 
     @Column
@@ -22,20 +23,28 @@ public class SingleParameter {
     private float measurement;
 
     @Column
+    private Date measurement_date;
+
+    @Column
     private String unit;
 
     @ManyToOne
-    @JoinColumn(name = "singleParamerter_id")
+    @JoinColumn(name = "parameterlist_id")
     @JsonIgnoreProperties({"parameter"})
-    ParametersList parameter;
+    ParametersList parameterList;
 
 
-    public SingleParameter(String title, float measurement, String unit) {
+    public SingleParameter(String title, float measurement, Date measurement_date, String unit) {
         this.title = title;
         this.measurement = measurement;
+        this.measurement_date = measurement_date;
         this.unit = unit;
     }
 
     public SingleParameter() {
+    }
+
+    public void setParameterList(ParametersList parametersList){
+        this.parameterList = parametersList;
     }
 }

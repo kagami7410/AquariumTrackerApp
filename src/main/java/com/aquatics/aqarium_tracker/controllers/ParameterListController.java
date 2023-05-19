@@ -47,4 +47,10 @@ public class ParameterListController {
         return ParameterListTitle + " :Deleted";
     }
 
+    @DeleteMapping("/parameterList/deleteAll")
+    public String deleteAll() {
+        parameterListRepository.deleteAll();
+        return" all Deleted";
+    }
+
 }

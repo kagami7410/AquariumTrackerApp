@@ -45,4 +45,22 @@ public class SingleParameterController {
         singleParamerterRepository.deleteById(id);
         return singleParameterName + " :Deleted";
     }
+
+    @DeleteMapping("/singleParameter/deleteAll")
+    public String deleteAll() {
+        singleParamerterRepository.deleteAll();
+        return "all Deleted";
+    }
+
+    @PutMapping("/singleParameter/update")
+    public String updateSingleParameter(@RequestBody SingleParameter updatedSingleParameter, @RequestParam Long id){
+        singleParamerterRepository.findById(id)
+                .map(singleParameter -> {
+                    singleParameter.setTitle(updatedSingleParameter.getTitle());
+                    singleParameter.setMeasurement(updatedSingleParameter.getMeasurement());
+                    singleParameter.setMeasurement_date(updatedSingleParameter.getMeasurement_date());
+                    return singleParamerterRepository.save(singleParameter);
+                });
+        return "parameter updated!";
+    }
 }

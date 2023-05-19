@@ -30,7 +30,7 @@ public class SingleParameter {
 
     @ManyToOne
     @JoinColumn(name = "parameterlist_id")
-    @JsonIgnoreProperties({"parameter"})
+    @JsonIgnoreProperties({"parameter","fishTank", "singleParameters"})
     ParametersList parameterList;
 
 

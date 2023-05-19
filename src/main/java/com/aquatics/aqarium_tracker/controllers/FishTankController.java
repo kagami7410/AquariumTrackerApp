@@ -40,4 +40,10 @@ public class FishTankController {
         return fishtankName + " :Deleted";
     }
 
+    @DeleteMapping("/fishtank/deleteAll")
+    public String deleteAll() {
+        fishTankRepository.deleteAll();
+        return "all Deleted";
+    }
+
 }

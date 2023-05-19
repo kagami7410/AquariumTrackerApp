@@ -32,4 +32,12 @@ public class FishTankController {
         fishTankRepository.save(fishTank);
         return new ResponseEntity<>("Fishtank: " + fishTank.getName(), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/fishtank/delete")
+    public String deleteById(@RequestParam Long id) {
+        String fishtankName = fishTankRepository.findFishtankById(id).orElse(null).getName();
+        fishTankRepository.deleteById(id);
+        return fishtankName + " :Deleted";
+    }
+
 }

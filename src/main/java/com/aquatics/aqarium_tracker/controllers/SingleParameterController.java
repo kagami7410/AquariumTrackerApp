@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.aquatics.aqarium_tracker.models.ParametersList;
 import com.aquatics.aqarium_tracker.models.SingleParameter;
-import com.aquatics.aqarium_tracker.repositories.ParameterRepository;
+import com.aquatics.aqarium_tracker.repositories.ParameterListRepository;
 import com.aquatics.aqarium_tracker.repositories.SingleParameterRepository;
 import com.aquatics.aqarium_tracker.service.ParameterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class SingleParameterController {
     ParameterServiceImpl parameterService;
 
     @Autowired
-    ParameterRepository parameterRepository;
+    ParameterListRepository parameterRepository;
 
 
     @PostMapping("/singleParameter/add")
@@ -37,5 +37,12 @@ public class SingleParameterController {
     public ResponseEntity<List<SingleParameter>> getSingleParameter(){
         List<SingleParameter> allSingleParameters = singleParamerterRepository.findAll();
         return new ResponseEntity<>(allSingleParameters, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/singleParameter/delete")
+    public String deleteById(@RequestParam Long id) {
+        String singleParameterName = singleParamerterRepository.findById(id).orElse(null).getTitle();
+        singleParamerterRepository.deleteById(id);
+        return singleParameterName + " :Deleted";
     }
 }

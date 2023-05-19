@@ -1,6 +1,7 @@
 package com.aquatics.aqarium_tracker.controllers;
 
 
+import com.aquatics.aqarium_tracker.models.IDs;
 import com.aquatics.aqarium_tracker.models.User;
 import com.aquatics.aqarium_tracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UserController {
     ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
     }
-    @PostMapping("addUser")
+    @PostMapping("users/add")
     ResponseEntity<String> addUser(@RequestBody User newUser){
         List<String> allUsernames = new ArrayList<>();
         List<User> allUsers = userRepository.findAll();
@@ -48,4 +49,20 @@ public class UserController {
                 "userRepository=" + userRepository +
                 '}';
     }
+
+    @DeleteMapping("/users/delete")
+    public String deleteById(@RequestParam Long id) {
+        String userName = userRepository.findUserById(id).orElse(null).getName();
+        userRepository.deleteById(id);
+        return userName + " :Deleted";
+    }
+
+    @DeleteMapping("/users/multipleDeletes")
+    public String deleteByIds( @RequestBody IDs ids) {
+        ids.getIds().stream()
+                .forEach(id -> userRepository.deleteById(id));
+        return  "users :Deleted";
+    }
+
+
 }

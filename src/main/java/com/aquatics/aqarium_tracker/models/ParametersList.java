@@ -26,7 +26,7 @@ public class ParametersList {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "parameterList")
+    @OneToMany(mappedBy = "parameterList",cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("parameterList")
     List<SingleParameter> singleParameters;
 

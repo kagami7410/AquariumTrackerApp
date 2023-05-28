@@ -24,7 +24,7 @@ public class FishTank {
     @JsonIgnoreProperties({"fishTanks"})
     User user;
 
-    @OneToOne(mappedBy = "fishTank")
+    @OneToOne(mappedBy = "fishTank", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"fishTank"})
     private ParametersList parameters;
 

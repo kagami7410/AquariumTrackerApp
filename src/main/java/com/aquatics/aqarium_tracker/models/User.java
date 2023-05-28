@@ -30,7 +30,7 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"user"})
     private List<FishTank> fishTanks;
 

@@ -20,6 +20,7 @@ pipeline {
             stage('docker build') {
         steps {
             sh 'docker build -t tracker_app .'
+            echo 'docker build complete'
         }
     }
   }

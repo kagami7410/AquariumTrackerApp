@@ -10,11 +10,12 @@ pipeline {
             steps {
                 sh 'rm -rf AquariumTrackerApp'
                 sh 'git clone https://github.com/kagami7410/AquariumTrackerApp.git '
+
             }
         }
-            stage('Bye') {
+            stage('maven package') {
         steps {
-            echo 'Bye'
+            sh 'mvn clean package'
         }
     }
 

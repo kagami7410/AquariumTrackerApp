@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 @Service
 public class ParameterServiceImpl implements ParameterService {
-    private List<Map<String, Integer>> parameters = new ArrayList<>(5);
+    private List<Map<String, Integer>> parameters = new ArrayList(5);
     private final Logger logger = Logger.getLogger(ParameterServiceImpl.class.getName());
 
     @Autowired
@@ -23,7 +23,7 @@ public class ParameterServiceImpl implements ParameterService {
 
     @Override
     public List<Map<String, Integer>> getOptimumParameter() {
-        if(parameters.stream().toList().size() > 0){
+        if(parameters.size() > 0){
             return this.parameters;
         }
         else  {
@@ -35,7 +35,6 @@ public class ParameterServiceImpl implements ParameterService {
 
             return this.parameters;
         }
-
 
     }
 

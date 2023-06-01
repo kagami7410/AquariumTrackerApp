@@ -14,7 +14,6 @@
 	<name>AqariumTracker</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>1.8.0_362-b08</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

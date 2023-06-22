@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        node{
+        kubernetes{
             label 'kube-agent'
         }
     }

@@ -1,6 +1,6 @@
 podTemplate {
     node(POD_LABEL) {
-        stages{
+
             stage('set up') {
                 steps {
                     sh 'rm -rf AquariumTrackerApp'
@@ -18,6 +18,6 @@ podTemplate {
 //                    echo 'docker build complete!!!!!!!'
                 }
             }
-        }
+
     }
 }

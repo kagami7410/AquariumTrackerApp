@@ -5,7 +5,6 @@ podTemplate {
                 steps {
                     sh 'rm -rf AquariumTrackerApp'
                     sh 'git clone https://github.com/kagami7410/AquariumTrackerApp.git '
-
                 }
             }
             stage('maven package') {
